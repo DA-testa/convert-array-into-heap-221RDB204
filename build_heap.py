@@ -7,15 +7,19 @@ def build_heap(data):
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
     for i in range(n//2, -1, -1):
+        j = i
         while True:
-            if 2*i+1 <= n-1 and data[i]>data[2*i+1]:
-                swaps.append((i, 2*i+1))
-                data[i], data[2*i+1] = data[2*i+1], data[i]
-            if 2*i+2 <= n-1 and data[i]>data[2*i+2]:
-                swaps.append((i, 2*i+2))
-                data[i], data[2*i+2] = data[2*i+2], data[i]
+            k = j
+            if 2*k+1 <= n-1 and data[k]>data[2*k+1]:
+                j = 2*k+1
+            if 2*k+2 <= n-1 and data[j]>data[2*k+2]:
+                j = 2*k+2
+            if k != j:
+                swaps.append((k, j))
+                data[k], data[j] = data[j], data[k]
             else:
                 break
+
     return swaps
 
 
